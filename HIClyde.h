@@ -56,38 +56,6 @@ typedef struct _HICDummy
 } HICDummy;
 #pragma pack(pop)
 
-enum class PacketType
-{
-	packet_mouse_stroke,
-	packet_keyboard_stroke,
-	packet_verify_status,
-	packet_request_keyboard_status,
-	packet_request_mouse_status,
-	packet_manage_status,
-	packet_toggle_device_manager,
-	packet_completed
-};
-
-struct PacketHeader
-{
-	uint64_t   magic;
-	PacketType type;
-};
-
-struct Packet
-{
-	PacketHeader header;
-	union
-	{
-		HIClydeMouseStroke	 mouse_stroke;
-		HIClydeKeyStroke	keyboard_stroke;
-		HIClydeVerifyStatus verify_status;
-		HIClydeRequestStatus request_status;
-		HIClydeManageStatus manage_status;
-		HIClydeToggleDeviceManager toggle_dm;
-		HICDummy dummy;
-	} data;
-};
 enum HIClydeKeyState
 {
 	HICLYDE_KEY_DOWN = 0x00,
